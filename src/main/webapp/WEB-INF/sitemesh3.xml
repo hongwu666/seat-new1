@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <mapping path="/*" decorator="/WEB-INF/html/decorator/main.html"/>
+    <mapping path="/App/*" exclude="true"/>
+    <mapping path="/login" exclude="true"/>
+</sitemesh>

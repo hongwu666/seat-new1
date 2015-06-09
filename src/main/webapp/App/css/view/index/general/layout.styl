@@ -1,0 +1,93 @@
+/*********************************************************/
+/*                 Template Layout                       */
+/*********************************************************/
+
+body
+	.padTop53
+		padding-top 104px
+		overflow visible
+		@media (min-width: 840px)
+			padding-top 54px
+
+body
+	tran all .3s ease-in-out
+
+#wrap
+#top
+.head
+#footer
+	clearfix();
+
+#wrap
+	position: relative;
+
+#left
+#right
+	tran all .3s ease-in-out
+	width 250px
+	z-index 999
+
+/*#left*/
+/*position absolute*/
+/*left -250px*/
+
+#right
+	position: fixed
+	top 0
+	bottom 0
+	overflow-y: auto
+	right -250px
+
+.sidebar-left-opened
+	#left
+		left 0
+
+.sidebar-right-opened
+	position: relative;
+	right 250px
+	#right
+		right 0
+	&.fixed
+		.navbar-fixed-top
+			right 250px
+
+@media (min-width: 768px)
+	#left
+		position: relative
+		float: left;
+		left auto
+
+	.sidebar-left-hidden
+		#left
+			/*width 0*/
+			position absolute
+			-webkit-transform: translate(-250px);
+			transform: translate(-250px);
+			visibility hidden
+
+	.sidebar-left-mini
+		#left
+			width 50px
+
+	#content
+		tran all .3s ease-in-out
+		textOverflow()
+
+	.sidebar-right-opened
+		right 0
+		margin-right 250px
+		.navbar-fixed-top
+			margin-right 250px
+
+@media (min-width: 1200px)
+	body.fixed
+		#wrap
+		#footer
+		#top
+			.navbar
+				.navvar-fixed-top
+					max-width 1170px
+					margin-left auto
+					margin-right auto
+
+/* ================== END Template Layout ============== */

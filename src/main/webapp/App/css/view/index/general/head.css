@@ -1,0 +1,19 @@
+.head{border-bottom:1px solid rgba(0,0,0,0.3);box-shadow:0 1px 0 rgba(255,255,255,0.05) inset;text-shadow:0 1px 0 rgba(0,0,0,0.5);background-color:#333;}
+.head .search-bar{margin:0 auto;padding:10px 15px;border-bottom:1px solid rgba(0,0,0,0.3);boxShadow:1px 0 rgba(255,255,255,0.05);}
+.head .search-bar .main-search{border-bottom:1px solid #7c7c7c;}
+.head .search-bar .main-search input[type="text"]{background-color:transparent;border-color:transparent;color:#ccc;}
+.head .search-bar .main-search button,.head .search-bar .main-search input[type=submit]{background-color:transparent;border:transparent}
+@media (min-width: 768px){.head .search-bar{border-bottom-width:0;border-right:1px solid rgba(0,0,0,0.3);boxShadow:-1px 0 0 rgba(255,255,255,0.05) inset}
+.side-right .head .search-bar{border-right-width:0;border-left:1px solid rgba(0,0,0,0.3);boxShadow:1px 0 0 rgba(255,255,255,0.05) inset}
+}.head .main-bar{padding:10px;}
+.head .main-bar h3{margin-top:0;margin-bottom:0;color:#bababa;}
+@media (min-width: 768px){.head .main-bar h3{margin-top:5px}
+}@media (min-width: 768px){.search-bar{float:left;padding:10px 4px;}
+.side-right .search-bar{float:right}
+.search-bar .input-small.form-control{border-radius:3px}
+.mian-bar display block{overflow:hidden}
+}@media (min-width: 992px){.search-bar{width:250px;padding:10px 15px;}
+.search-bar .input-ground-btn{display:table-cell}
+.search-bar .input-small .form-control{border-radius:3px 0 0 3px}
+.mini-sidebar .search-bar .input-small.form-control{border-radius:3px}
+}

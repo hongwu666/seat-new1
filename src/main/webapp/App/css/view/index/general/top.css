@@ -1,0 +1,5 @@
+#top .navbar{margin-bottom:0;border-top:3px solid #cd0067}
+#top .navbar-brand{padding:0}
+#top .topnav{margin:10px 0;text-align:right;}
+@media (min-width: 768px){#top .topnav{float:right}
+}#top .btn-metis-1{color:#fff;background-color:#ee465a;border-color:#c11a39}

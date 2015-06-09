@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>
+		<sitemesh:write property='title'/>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="author" content="Table">
+	<meta name="copyright" th:attr="content='Copyright (c) 2010-__${#dates.format(#dates.createNow(), 'yyyy')}__ MaiZuo.'"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="blank">
+	<meta name="format-detection" content="telephone=no">
+
+	<meta name="keywords" content="网上买电影票，团购电影票，电影票在线购买，低价电影票打折，特价折扣电影票，手机订票,电影预售票,电影票房,电影排期,最新上映电影票价,电影图片,电影预告片,电影剧情简介,电影评论">
+	<meta name="description" content="卖座网是中国最大的电影票在线预订购买网站,目前与1300多家影院合作,覆盖140多个城市,全年提供各种影院优惠打折电影票、团购电影票、卖座电影卡及在线选座服务">
+
+	<link rel="stylesheet" href="/App/assets/lib/bootstrap/css/bootstrap.css"/>
+	<link rel="stylesheet" href="/App/assets/lib/font-awesome/css/font-awesome.css">
+	<sitemesh:write property='head'/>
+
+</head>
+<body>
+
+<div class="viewport">
+
+	<div id="wrap">
+
+		<div th:include="decorator/header" th:remove="tag"></div>
+
+		<div th:include="decorator/menu" th:remove="tag"></div>
+
+		<div id="content">
+			<div class="outer">
+				<div class="inner">
+
+				</div>
+			</div>
+		</div>
+
+		<div th:include="decorator/sidebar" th:remove="tag"></div>
+
+	</div>
+
+	<div th:include="decorator/footer" th:remove="tag"></div>
+
+</div>
+<script src="/App/lib/basic.js?t=1410238259502"></script>
+<script src="/App/config.js">
+	require([$('meta[name=view]').attr('content')]);
+</script>
+</body>
+</html>
