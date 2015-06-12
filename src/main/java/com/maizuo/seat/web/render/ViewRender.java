@@ -1,11 +1,16 @@
 package com.maizuo.seat.web.render;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.dom4j.Document;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -92,4 +97,19 @@ public class ViewRender {
 		render(text, "text/x-json;charset=UTF-8", response);
 	}
 
+	public static void writeXml(Document doc, OutputStream out) {
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		format.setEncoding("utf-8");
+		XMLWriter writer;
+		try {
+			writer = new XMLWriter(out, format);
+			writer.write(doc);
+			out.flush();
+			out.close();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

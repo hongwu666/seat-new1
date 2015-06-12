@@ -12,7 +12,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.maizuo.common.jdbc.JdbcImpl;
+import com.maizuo.seat.entity.Cinema;
+import com.maizuo.seat.entity.Foretell;
+import com.maizuo.seat.entity.Halls;
 import com.maizuo.seat.helper.StringHelper;
 import com.maizuo.seat.object.CinemaOffer;
 import com.maizuo.seat.object.FilmOffer;
@@ -21,6 +26,8 @@ import com.maizuo.seat.object.ShowOffer;
 import com.maizuo.seat.service.offer.OfferInfo;
 import com.maizuo.seat.service.offer.OfferService;
 import com.maizuo.seat.service.offer.RequestObj;
+import com.maizuo.seat.service.offer.RequestUsedSeatObj;
+import com.maizuo.seat.util.IDGenerator;
 import com.maizuo.seat.util.UrlRequestUtils;
 
 /**
@@ -31,10 +38,12 @@ import com.maizuo.seat.util.UrlRequestUtils;
  */
 public class FirePhenixServiceImpl extends Common implements OfferService {
 
+	@Autowired
+	private JdbcImpl jdbcImpl;
 	private LinkedHashMap<String, Object> paramsMap = new LinkedHashMap<>();
 
 	private Map<String, Object> analyst(String method, LinkedHashMap<String, Object> params) {
-
+		reset();
 		String documentStr = "";
 		Document document = null;
 		SAXReader saxReader = new SAXReader();
@@ -103,6 +112,43 @@ public class FirePhenixServiceImpl extends Common implements OfferService {
 				cinemaList.add(cinema);
 			}
 		}
+
+/*		List<Cinema> list = new ArrayList<>();
+
+		int i = 1;
+
+		for (CinemaOffer cinemaOffer : cinemaList) {
+			Cinema cinema = new Cinema();
+			cinema.setId(IDGenerator.getID());
+			cinema.setOfferId(1);
+			long sta = System.currentTimeMillis();
+			List<Halls> list1 = new ArrayList<>();
+			String[] ids = cinemaOffer.getHalls().split("-");
+			String[] names = cinemaOffer.getHallNames().split("-");
+			String[] counts = cinemaOffer.getSeatCounts().split("-");
+			String[] vips = cinemaOffer.getVipFlags().split("-");
+			for (int j = 0; j < ids.length; j++) {
+				Halls halls = new Halls();
+				halls.setCinameId(cinema.getId());
+				halls.setName(names[j]);
+				halls.setSeatNum(Integer.valueOf(counts[j]));
+				halls.setVipFlag(Integer.valueOf(vips[j]));
+				halls.setCode(Integer.valueOf(ids[j]));
+				list1.add(halls);
+			}
+			jdbcImpl.insert(list1);
+			long sta1 = System.currentTimeMillis();
+			System.out.println(sta1 - sta);
+			cinema.setCinemaId(cinemaOffer.getOfferCinemaId());
+			cinema.setCinemaCity(cinemaOffer.getCityName());
+			cinema.setCinemaLinkId(cinemaOffer.getLinkId());
+			cinema.setCinemaName(cinemaOffer.getCinemaName());
+			cinema.setMzCinemaId(i);
+			i++;
+			list.add(cinema);
+		}
+		jdbcImpl.insert(list);*/
+
 		return cinemaList;
 	}
 
@@ -152,6 +198,7 @@ public class FirePhenixServiceImpl extends Common implements OfferService {
 				filmList.add(filmOffer);
 			}
 		}
+
 		return filmList;
 	}
 
@@ -242,6 +289,21 @@ public class FirePhenixServiceImpl extends Common implements OfferService {
 				}
 			}
 		}
+		List<Foretell> list = new ArrayList<>();
+		for (ShowOffer show : showList) {
+			Foretell foretell = new Foretell();
+			foretell.setId(IDGenerator.getID());
+			foretell.setHallId(Integer.parseInt(show.getHallId()));
+			foretell.setOfferMovieId(show.getOfferFilmId());
+			foretell.setOfferCinemaId(show.getOfferCinemaId());
+			foretell.setSectionId(show.getSectionId());
+			foretell.setShowDate(show.getDate());
+			foretell.setShowTime(show.getTime());
+			foretell.setSeqNo(show.getSeqNo());
+			foretell.setShowSeqNo(show.getShowSeqNo());
+			list.add(foretell);
+		}
+		jdbcImpl.insert(list);
 		return showList;
 	}
 
@@ -286,5 +348,125 @@ public class FirePhenixServiceImpl extends Common implements OfferService {
 
 	public void init() {
 		this.offerInfo = OfferInfo.ins().get(1);
+	}
+
+	/**
+	 * 按影院场次获取该场次不可售座位状态信息。
+	 * 
+	 * @param cinemaId
+	 * @param cinemaLinkID
+	 * @param hallId
+	 * @param sectionId
+	 * @param filmId
+	 * @param showSeqNo
+	 * @param showDate
+	 * @param showTime
+	 * @return
+	 */
+	public List<SeatOffer> getUsedSeats(String cinemaId, String cinemaLinkID, String hallId, String sectionId, String filmId, String showSeqNo, String showDate, String showTime) {
+
+		List<SeatOffer> ticketList = new ArrayList<SeatOffer>();
+		paramsMap.clear();
+		paramsMap.put("cinemaId", cinemaId);
+		paramsMap.put("cinemaLinkID", cinemaLinkID);
+		paramsMap.put("hallId", hallId);
+		paramsMap.put("sectionId", sectionId);
+		paramsMap.put("filmId", filmId);
+		paramsMap.put("showSeqNo", showSeqNo);
+		paramsMap.put("showDate", showDate);
+		paramsMap.put("showTime", showTime);
+		Map<String, Object> map = this.analyst("qryTicket", paramsMap);
+		if ((Integer) map.get("ERROR_CODE") > 0) {
+			this.errorCode = (Integer) map.get("ERROR_CODE");
+			this.errorMsg = (String) map.get("ERROR_MSG");
+		} else {
+			SeatOffer ticket = new SeatOffer();
+			Document document = (Document) map.get("DOCUMENT");
+
+			Element showSeatsEl = document.getRootElement();
+			Element resultEl = showSeatsEl.element("result");
+			if (resultEl != null) {
+				errorCode = Integer.parseInt(resultEl.getTextTrim());
+				Element msgsEl = showSeatsEl.element("messages");
+				Element msgEl = msgsEl.element("message");
+				errorMsg = msgEl.getTextTrim();
+			}
+
+			String _cinemaId = showSeatsEl.attributeValue("cinemaId");
+			String _hallId = showSeatsEl.attributeValue("hallId");
+			for (Iterator i = showSeatsEl.elementIterator(); i.hasNext();) {
+				Element sectionEl = (Element) i.next();
+				String _sectionId = sectionEl.attributeValue("id");
+				for (Iterator ii = sectionEl.elementIterator(); ii.hasNext();) {
+					Element seatEl = (Element) ii.next();
+					ticket = new SeatOffer();
+					ticket.setColumnId(seatEl.attributeValue("columnId"));
+					ticket.setRowId(seatEl.attributeValue("rowId"));
+					ticket.setSectionId(_sectionId);
+					ticket.setHallId(_hallId);
+					ticket.setCinemaId(_cinemaId);
+					ticketList.add(ticket);
+				}
+			}
+		}
+		if (errorCode == 0) {
+			result = true;
+		}
+
+		return ticketList;
+	}
+
+	@Override
+	public List<SeatOffer> getUsedSeats(RequestUsedSeatObj obj) {
+
+		List<SeatOffer> ticketList = new ArrayList<SeatOffer>();
+		paramsMap.clear();
+		paramsMap.put("cinemaId", obj.getCinemaId());
+		paramsMap.put("cinemaLinkID", obj.getCinemaLinkID());
+		paramsMap.put("hallId", obj.getHallId());
+		paramsMap.put("sectionId", obj.getSectionId());
+		paramsMap.put("filmId", obj.getFilmId());
+		paramsMap.put("showSeqNo", obj.getShowSeqNo());
+		paramsMap.put("showDate", obj.getShowDate());
+		paramsMap.put("showTime", obj.getShowTime());
+		Map<String, Object> map = this.analyst("qryTicket", paramsMap);
+		if ((Integer) map.get("ERROR_CODE") > 0) {
+			this.errorCode = (Integer) map.get("ERROR_CODE");
+			this.errorMsg = (String) map.get("ERROR_MSG");
+		} else {
+			SeatOffer ticket = new SeatOffer();
+			Document document = (Document) map.get("DOCUMENT");
+
+			Element showSeatsEl = document.getRootElement();
+			Element resultEl = showSeatsEl.element("result");
+			if (resultEl != null) {
+				errorCode = Integer.parseInt(resultEl.getTextTrim());
+				Element msgsEl = showSeatsEl.element("messages");
+				Element msgEl = msgsEl.element("message");
+				errorMsg = msgEl.getTextTrim();
+			}
+
+			String _cinemaId = showSeatsEl.attributeValue("cinemaId");
+			String _hallId = showSeatsEl.attributeValue("hallId");
+			for (Iterator i = showSeatsEl.elementIterator(); i.hasNext();) {
+				Element sectionEl = (Element) i.next();
+				String _sectionId = sectionEl.attributeValue("id");
+				for (Iterator ii = sectionEl.elementIterator(); ii.hasNext();) {
+					Element seatEl = (Element) ii.next();
+					ticket = new SeatOffer();
+					ticket.setColumnId(seatEl.attributeValue("columnId"));
+					ticket.setRowId(seatEl.attributeValue("rowId"));
+					ticket.setSectionId(_sectionId);
+					ticket.setHallId(_hallId);
+					ticket.setCinemaId(_cinemaId);
+					ticketList.add(ticket);
+				}
+			}
+		}
+		if (errorCode == 0) {
+			result = true;
+		}
+
+		return ticketList;
 	}
 }

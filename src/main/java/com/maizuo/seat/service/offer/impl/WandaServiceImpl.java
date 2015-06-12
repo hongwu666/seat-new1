@@ -12,6 +12,7 @@ import com.maizuo.seat.object.ShowOffer;
 import com.maizuo.seat.service.offer.OfferInfo;
 import com.maizuo.seat.service.offer.OfferService;
 import com.maizuo.seat.service.offer.RequestObj;
+import com.maizuo.seat.service.offer.RequestUsedSeatObj;
 import com.talkweb.pm.framework.FrameException;
 import com.talkweb.wanda.app.AppService;
 import com.talkweb.wanda.app.bean.Cinema;
@@ -42,7 +43,7 @@ public class WandaServiceImpl extends Common implements OfferService {
 					c.setOfferCityId(city.getCityCode());
 					c.setCityName(city.getCityName());
 					c.setOfferCinemaId(wdc.getCinemaId());
-					c.setCinamaName(wdc.getCinemaName());
+					c.setCinemaName(wdc.getCinemaName());
 					c.setAddress(wdc.getAddress());
 					c.setPhone(wdc.getTel());
 					c.setLinkId("");
@@ -220,5 +221,11 @@ public class WandaServiceImpl extends Common implements OfferService {
 	public void init() {
 		offerInfo = OfferInfo.ins().get(4);
 		appService = AppServiceProxy.init(offerInfo.getUrl(), offerInfo.getAccount(), offerInfo.getPassword(), offerInfo.getKey());
+	}
+
+	@Override
+	public List<SeatOffer> getUsedSeats(RequestUsedSeatObj obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

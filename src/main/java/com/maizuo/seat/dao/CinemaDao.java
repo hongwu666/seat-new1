@@ -8,5 +8,5 @@ public interface CinemaDao {
 
 	public List<Cinema> getList(int offerId);
 
-	public Cinema get(int cinemaId) ;
+	public Cinema get(int offerId, int mzCinemaId);
 }

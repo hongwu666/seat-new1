@@ -3,27 +3,35 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Test {
 	public static void main(String[] args) {
+		a();
+	}
 
-		// Map<String,String> map=new HashMap<String, String>();
-		// map.put(key, value);
-		// String
-		// s=UrlRequestUtils.execute("http://localhost:8080/seat-new1/cinemas.htm"
-		// , null, "get");
-		/*
-		 * System.out.println(s); User user = new User();
-		 * System.out.println(bean2Json(user));
-		 */
-		/*
-		 * User user = new User(); user.setAge(2); user.setHigh(2); long start1
-		 * = System.currentTimeMillis(); FastJsonUtils.toJson(user); //
-		 * System.out.println(+"asds"); long start2 =
-		 * System.currentTimeMillis(); System.out.println(start2 - start1 +
-		 * "sdasd"); //bean2Json(user); // System.out.println(); long start3 =
-		 * System.currentTimeMillis(); System.out.println(start3 - start2);
-		 */
+	public static void a() {
+		Integer i = 9, j = 4;
+		String str = "123";
+		System.out.println(str);
+		// b(i, j);
+
+		List<Integer> list = new ArrayList<>();
+		b(list);
+		// list.add(1);
+		System.out.println(list.size());
+
+		// j = i + j;
+		// System.out.println(j);
+	}
+
+	public static void b(String str) {
+		str = new String("asdasd");
+	}
+
+	public static void b(List<Integer> list) {
+		list.add(1);
 	}
 
 	@SuppressWarnings("unused")

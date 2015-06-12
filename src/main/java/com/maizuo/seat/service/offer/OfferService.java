@@ -6,8 +6,9 @@ import com.maizuo.seat.object.CinemaOffer;
 import com.maizuo.seat.object.FilmOffer;
 import com.maizuo.seat.object.SeatOffer;
 import com.maizuo.seat.object.ShowOffer;
+import com.maizuo.seat.service.HallService;
 
-public interface OfferService {
+public interface OfferService{
 	/**
 	 * 请求获得的数据空
 	 */
@@ -33,6 +34,8 @@ public interface OfferService {
 	public List<ShowOffer> getForetell(RequestObj obj);
 
 	public List<SeatOffer> getSeats(RequestObj obj);
+
+	public List<SeatOffer> getUsedSeats(RequestUsedSeatObj obj);
 
 	public void init();
 }

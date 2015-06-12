@@ -8,6 +8,7 @@ import com.maizuo.seat.object.SeatOffer;
 import com.maizuo.seat.object.ShowOffer;
 import com.maizuo.seat.service.offer.OfferService;
 import com.maizuo.seat.service.offer.RequestObj;
+import com.maizuo.seat.service.offer.RequestUsedSeatObj;
 
 /**
  * 中影国际
@@ -61,6 +62,12 @@ public class ZYGJServiceImpl implements OfferService {
 	public void init() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<SeatOffer> getUsedSeats(RequestUsedSeatObj obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

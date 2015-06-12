@@ -11,7 +11,7 @@ public class CinemaOffer {
 	private String offerName;
 	private String cityName;
 	private String offerCinemaId;
-	private String cinamaName;
+	private String cinemaName;
 	private String region;
 	private String address;
 	private String phone;
@@ -100,13 +100,13 @@ public class CinemaOffer {
 		this.cityId = cityId;
 	}
 
-	public String getCinamaName() {
-		return cinamaName;
+	public String getCinemaName() {
+		return cinemaName;
 	}
 
 	@XmlAttribute
-	public void setCinamaName(String cinamaName) {
-		this.cinamaName = cinamaName;
+	public void setCinemaName(String cinemaName) {
+		this.cinemaName = cinemaName;
 	}
 
 	public String getRegion() {
@@ -214,7 +214,7 @@ public class CinemaOffer {
 	public CinemaOffer(Element element) {
 		this.setCinemaId(0);
 		this.setOfferCinemaId(element.attributeValue("id"));
-		this.setCinamaName(element.attributeValue("name"));
+		this.setCinemaName(element.attributeValue("name"));
 		this.setLinkId(element.attributeValue("linkId"));
 		this.setCityName(element.attributeValue("local"));
 		this.setStatus(element.attributeValue("status"));

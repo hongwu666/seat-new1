@@ -19,6 +19,10 @@ import com.maizuo.seat.doman.Result;
  * @see
  */
 public class BaseController {
+	protected final static String ROOT_NODE_NAME = "Result";
+	protected final static String STATUS_NODE_NAME = "Status";
+	protected final static String RESULTMSG_NODE_NAME = "ResultMsg";
+	protected final static String OfferId_NODE_NAME = "OfferId";
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected HttpSession session;
@@ -33,8 +37,10 @@ public class BaseController {
 		this.session = request.getSession();
 		this.map = new HashMap<Object, Object>();
 	}
+
 	/**
 	 * 获取一个整形参数
+	 * 
 	 * @param key
 	 * @param defaultValue
 	 * @return
@@ -46,8 +52,10 @@ public class BaseController {
 		}
 		return defaultValue;
 	}
+
 	/**
 	 * 获取一个字符串参数
+	 * 
 	 * @param key
 	 * @param defaultValue
 	 * @return
@@ -60,28 +68,26 @@ public class BaseController {
 		}
 	}
 
-/*	*//**
+	/*	*//**
 	 * 获取保存在Session中的用户对象
 	 * 
 	 * @param request
 	 * @return
-	 *//*
-	protected User getSessionUser(HttpServletRequest request) {
-		return (User) request.getSession().getAttribute(Constant.USER_CONTEXT);
-	}
-
-	*//**
+	 */
+	/*
+	 * protected User getSessionUser(HttpServletRequest request) { return (User)
+	 * request.getSession().getAttribute(Constant.USER_CONTEXT); }
+	 *//**
 	 * 保存用户对象到Session中
 	 * 
 	 * @param request
 	 * @param user
-	 *//*
-	protected void setSessionUser(HttpServletRequest request, User user) {
-		User u = new User();
-		u.setId1(user.getId1());
-		u.setName(user.getName());
-		request.getSession().setAttribute(Constant.USER_CONTEXT, u);
-	}*/
+	 */
+	/*
+	 * protected void setSessionUser(HttpServletRequest request, User user) {
+	 * User u = new User(); u.setId1(user.getId1()); u.setName(user.getName());
+	 * request.getSession().setAttribute(Constant.USER_CONTEXT, u); }
+	 */
 
 	public Result result(int status, Object data, String msg) {
 		return new Result(status, data, msg);

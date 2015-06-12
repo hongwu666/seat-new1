@@ -41,8 +41,9 @@ public class CinemaServiceImpl implements CinemaService {
 		StringBuffer bufName = new StringBuffer();
 		for (ThirdCinameRelation relation : relations) {
 			int cinemaId = relation.getCinameId();
-			Cinema cinema = this.cinemaDao.get(cinemaId);
-			List<Halls> halls = this.hallsDao.getList(cinema.getId());
+			Cinema cinema = null;
+			// this.cinemaDao.get(cinemaId);
+			List<Halls> halls = this.hallsDao.getList(Integer.valueOf(cinema.getId()));
 			CinemaInfo cinemaInfo = new CinemaInfo();
 			CityInfo cityInfo = new CityInfo();
 			bufcode.setLength(0);
@@ -64,5 +65,11 @@ public class CinemaServiceImpl implements CinemaService {
 		long end = System.currentTimeMillis();
 		System.err.print(end - start);
 		return bo;
+	}
+
+	@Override
+	public Cinema getCinema(int offerId, int mzCinemaId) {
+
+		return this.cinemaDao.get(offerId, mzCinemaId);
 	}
 }

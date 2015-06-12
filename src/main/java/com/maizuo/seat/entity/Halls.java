@@ -1,27 +1,27 @@
 package com.maizuo.seat.entity;
 
 public class Halls implements SystemMode {
-	private int id;
-	private int cinameId;
+	private String id;
+	private String cinameId;
 	private int code;
 	private String name;
 	private String updateHallNames;
 	private int vipFlag;
 	private int seatNum;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public int getCinameId() {
+	public String getCinameId() {
 		return cinameId;
 	}
 
-	public void setCinameId(int cinameId) {
+	public void setCinameId(String cinameId) {
 		this.cinameId = cinameId;
 	}
 

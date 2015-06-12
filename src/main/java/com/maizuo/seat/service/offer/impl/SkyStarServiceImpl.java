@@ -19,6 +19,7 @@ import com.maizuo.seat.object.ShowOffer;
 import com.maizuo.seat.service.offer.OfferInfo;
 import com.maizuo.seat.service.offer.OfferService;
 import com.maizuo.seat.service.offer.RequestObj;
+import com.maizuo.seat.service.offer.RequestUsedSeatObj;
 import com.maizuo.seat.util.MD5;
 import com.maizuo.seat.util.UrlRequestUtils;
 
@@ -93,7 +94,7 @@ public class SkyStarServiceImpl extends Common implements OfferService {
 
 					CinemaOffer cinema = new CinemaOffer();
 					cinema.setOfferCinemaId(cinemaEl.element("PlaceNo").getText());
-					cinema.setCinamaName(cinemaEl.element("PlaceName").getText());
+					cinema.setCinemaName(cinemaEl.element("PlaceName").getText());
 					cinema.setOfferCityId(cinemaEl.element("CityNo").getText());
 
 					ps = new LinkedHashMap<String, Object>();
@@ -182,8 +183,6 @@ public class SkyStarServiceImpl extends Common implements OfferService {
 
 	@Override
 	public void setIsShowLog(boolean isShowLog) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -363,5 +362,11 @@ public class SkyStarServiceImpl extends Common implements OfferService {
 
 	public void init() {
 		this.offerInfo = OfferInfo.ins().get(2);
+	}
+
+	@Override
+	public List<SeatOffer> getUsedSeats(RequestUsedSeatObj obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -47,7 +47,7 @@ public class CinemaDaoRedis implements CinemaDao {
 	}
 
 	@Override
-	public Cinema get(int cinemaId) {
+	public Cinema get(int offerId, int mzCinemaId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

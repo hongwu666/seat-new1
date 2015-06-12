@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class SeatController extends BaseController {
-
+	
+	
 	/**
 	 * 锁座位
 	 * 

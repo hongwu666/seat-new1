@@ -56,8 +56,13 @@ public class CinemaDaoMysql implements CinemaDao {
 	}
 
 	@Override
-	public Cinema get(int cinemaId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cinema get(int offerId, int mzCinemaId) {
+		String sql = "SELECT * FROM cinema WHERE offer_id = ? AND mz_cinema_id=?";
+
+		SqlParameter parameter = new SqlParameter();
+		parameter.setInt(offerId);
+		parameter.setInt(mzCinemaId);
+
+		return this.jdbcImpl.get(sql, Cinema.class, parameter);
 	}
 }

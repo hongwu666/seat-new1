@@ -10,6 +10,9 @@
 	<bean id="cinemaDao" class="com.maizuo.seat.dao.cache.CinemaDaoCache"
 		init-method="init">
 	</bean>
+	<bean id="foretellDao" class="com.maizuo.seat.dao.cache.ForetellDaoCache"
+		init-method="init">
+	</bean>
 	<bean id="userDao" class="com.maizuo.seat.dao.cache.UserDaoCache"
 		init-method="init">
 	</bean>
