@@ -36,7 +36,6 @@ public class BaseSystemRedisDao<T extends DefaultSystemRedisMode<?>> extends Bas
 	}
 
 	private List<T> getAll() {
-
 		String table = className2TableName(entityClass.getSimpleName());
 		String sql = "SELECT * FROM " + table;
 		return this.jdbcImpl.getList(sql, entityClass);

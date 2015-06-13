@@ -23,5 +23,7 @@
 	<classpathentry kind="lib" path="D:/seat/root/WEB-INF/lib/hessian-4.0.7.jar"/>
 	<classpathentry kind="lib" path="D:/seat/root/WEB-INF/lib/det-all.jar"/>
 	<classpathentry kind="lib" path="D:/seat/root/WEB-INF/lib/det-member.jar"/>
+	<classpathentry kind="lib" path="D:/apache-maven-3.3.3/maven-dependcies/org/apache/logging/log4j/log4j-api/2.1/log4j-api-2.1.jar"/>
+	<classpathentry kind="lib" path="D:/apache-maven-3.3.3/maven-dependcies/org/apache/logging/log4j/log4j-core/2.1/log4j-core-2.1.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

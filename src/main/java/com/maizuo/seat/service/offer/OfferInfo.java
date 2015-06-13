@@ -11,6 +11,15 @@ public class OfferInfo {
 	private String password;
 	private String key;
 	private String type;
+	/**
+	 * 合作伙伴id
+	 */
+	private String pid;
+	/**
+	 * 授权码
+	 */
+	private String authcode;
+	
 	private static OfferInfo info;
 
 	public static OfferInfo ins() {
@@ -63,6 +72,22 @@ public class OfferInfo {
 
 	public void setKey(String key) {
 		this.key = key;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public String getAuthcode() {
+		return authcode;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+
+	public void setAuthcode(String authcode) {
+		this.authcode = authcode;
 	}
 
 	public OfferInfo get(int offerId) {

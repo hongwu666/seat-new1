@@ -2,6 +2,7 @@ package com.maizuo.seat.web.contorller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import com.maizuo.seat.service.offer.RequestObj;
 public class OfferController extends BaseController {
 	@Autowired
 	private OfferServiceFactory offerServiceFactory;
+	private Logger logger = Logger.getLogger(OfferController.class);
 
 	/**
 	 * 拉取影院及城市列表
@@ -35,10 +37,13 @@ public class OfferController extends BaseController {
 	@RequestMapping(value = { "/seat/cinemas" }, method = RequestMethod.GET)
 	@ResponseBody
 	public ReslutBO seatCinemas() {
+		long start = System.currentTimeMillis();
 		int offerId = this.getInt("offerId", 1);
 		OfferService service = offerServiceFactory.getBean(offerId);
 		ReslutBO bo = new ReslutBO(service);
 		bo.setList(service.getCinemas());
+		long end = System.currentTimeMillis();
+		logger.error("seatCinemas-----offerId---" + offerId + "----" + (end - start));
 		return bo;
 	}
 
@@ -50,6 +55,7 @@ public class OfferController extends BaseController {
 	@RequestMapping(value = { "/seat/foretells" }, method = RequestMethod.GET)
 	@ResponseBody
 	public ReslutBO seatForetells() {
+		long start = System.currentTimeMillis();
 		int offerId = this.getInt("offerId", 1);
 		OfferService service = offerServiceFactory.getBean(offerId);
 		RequestObj obj = new RequestObj();
@@ -59,6 +65,8 @@ public class OfferController extends BaseController {
 		List<ShowOffer> showOffer = service.getForetell(obj);
 		ReslutBO bo = new ReslutBO(service);
 		bo.setShowOffers(showOffer);
+		long end = System.currentTimeMillis();
+		logger.error("seatForetells-----offerId---" + offerId + "----" + (end - start));
 		return bo;
 	}
 
@@ -70,6 +78,7 @@ public class OfferController extends BaseController {
 	@RequestMapping(value = { "/seat/halls" }, method = RequestMethod.GET)
 	@ResponseBody
 	public ReslutBO seatHalls() {
+		long start = System.currentTimeMillis();
 		int offerId = this.getInt("offerId", 1);
 		OfferService service = offerServiceFactory.getBean(offerId);
 		RequestObj obj = new RequestObj();
@@ -79,6 +88,8 @@ public class OfferController extends BaseController {
 		List<SeatOffer> list = service.getSeats(obj);
 		ReslutBO bo = new ReslutBO(service);
 		bo.setSeatOffers(list);
+		long end = System.currentTimeMillis();
+		logger.error("seatHalls-----offerId---" + offerId + "----" + (end - start));
 		return bo;
 	}
 
@@ -90,6 +101,7 @@ public class OfferController extends BaseController {
 	@RequestMapping(value = { "/seat/movies" }, method = RequestMethod.GET)
 	@ResponseBody
 	public ReslutBO seatMovies() {
+		long start = System.currentTimeMillis();
 		int offerId = this.getInt("offerId", 1);
 		OfferService service = offerServiceFactory.getBean(offerId);
 		RequestObj obj = new RequestObj();
@@ -99,6 +111,8 @@ public class OfferController extends BaseController {
 		List<FilmOffer> list = service.getFilms(obj);
 		ReslutBO bo = new ReslutBO(service);
 		bo.setFilmOffers(list);
+		long end = System.currentTimeMillis();
+		logger.error("seatMovies-----offerId---" + offerId + "----" + (end - start));
 		return bo;
 
 	}

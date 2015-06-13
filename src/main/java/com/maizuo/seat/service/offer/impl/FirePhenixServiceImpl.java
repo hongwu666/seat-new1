@@ -123,7 +123,6 @@ public class FirePhenixServiceImpl extends Common implements OfferService {
 
 	@Override
 	public void setIsShowLog(boolean isShowLog) {
-		// TODO Auto-generated method stub
 
 	}
 

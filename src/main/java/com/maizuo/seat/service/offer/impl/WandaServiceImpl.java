@@ -24,8 +24,8 @@ import com.talkweb.wanda.app.impl.AppServiceProxy;
 
 public class WandaServiceImpl extends Common implements OfferService {
 	private static AppService appService;
+
 	public List<CinemaOffer> getCinemas() {
-		System.out.println(offerInfo.getType());
 		List<CinemaOffer> cinemaList = new ArrayList<CinemaOffer>();
 		CinemaOffer c = new CinemaOffer();
 
@@ -190,7 +190,6 @@ public class WandaServiceImpl extends Common implements OfferService {
 
 	public boolean unLockSeat(String offerorderId) {
 
-		String method = "doCancelOrder";
 		boolean cancel = false;
 		try {
 			cancel = appService.doCancelOrder(offerorderId);
@@ -215,9 +214,10 @@ public class WandaServiceImpl extends Common implements OfferService {
 
 	@Override
 	public void setIsShowLog(boolean isShowLog) {
-		
+
 	}
-	public void init(){
+
+	public void init() {
 		offerInfo = OfferInfo.ins().get(4);
 		appService = AppServiceProxy.init(offerInfo.getUrl(), offerInfo.getAccount(), offerInfo.getPassword(), offerInfo.getKey());
 	}

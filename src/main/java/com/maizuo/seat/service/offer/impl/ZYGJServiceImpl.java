@@ -19,50 +19,48 @@ public class ZYGJServiceImpl implements OfferService {
 
 	@Override
 	public List<CinemaOffer> getCinemas() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean getResult() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public int getErrorCode() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public String getErrorMsg() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setIsShowLog(boolean isShowLog) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public List<FilmOffer> getFilms(RequestObj obj) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<ShowOffer> getForetell(RequestObj obj) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<SeatOffer> getSeats(RequestObj obj) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

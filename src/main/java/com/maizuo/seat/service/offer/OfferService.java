@@ -17,8 +17,6 @@ public interface OfferService {
 	 * 
 	 */
 	public static final int _error1 = 1041;
-	
-	
 
 	public List<CinemaOffer> getCinemas();
 
@@ -35,4 +33,6 @@ public interface OfferService {
 	public List<ShowOffer> getForetell(RequestObj obj);
 
 	public List<SeatOffer> getSeats(RequestObj obj);
+
+	public void init();
 }
