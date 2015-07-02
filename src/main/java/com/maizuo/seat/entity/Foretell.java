@@ -3,18 +3,27 @@ package com.maizuo.seat.entity;
 import java.sql.Date;
 
 public class Foretell implements SystemMode {
-
+	// 唯一id
 	private String id;
+	// 影院id
 	private String offerCinemaId;
+	// 影片id
 	private String offerMovieId;
+	// 日期
 	private String showDate;
+	// 时间
 	private String showTime;
-	private int hallId;
+	// 厅id
+	private String hallId;
+	// 厅名称
 	private String hallName;
 	private String seqNo;
 	private String showSeqNo;
+
 	private String sectionId;
+	// 最低价格
 	private String lowstPrice;
+	// 价格
 	private String price;
 	private String dimensional;
 	private String carrier;
@@ -65,11 +74,11 @@ public class Foretell implements SystemMode {
 		this.showTime = showTime;
 	}
 
-	public int getHallId() {
+	public String getHallId() {
 		return hallId;
 	}
 
-	public void setHallId(int hallId) {
+	public void setHallId(String hallId) {
 		this.hallId = hallId;
 	}
 
@@ -95,14 +104,6 @@ public class Foretell implements SystemMode {
 
 	public void setShowSeqNo(String showSeqNo) {
 		this.showSeqNo = showSeqNo;
-	}
-
-	public String getSectionId() {
-		return sectionId;
-	}
-
-	public void setSectionId(String sectionId) {
-		this.sectionId = sectionId;
 	}
 
 	public String getLowstPrice() {
@@ -169,6 +170,14 @@ public class Foretell implements SystemMode {
 		this.mzPrice = mzPrice;
 	}
 
+	public String getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(String sectionId) {
+		this.sectionId = sectionId;
+	}
+
 	public int getMzFee() {
 		return mzFee;
 	}
@@ -193,6 +202,10 @@ public class Foretell implements SystemMode {
 	@Override
 	public String getObjKey() {
 		return id;
+	}
+
+	public Foretell() {
+		super();
 	}
 
 }

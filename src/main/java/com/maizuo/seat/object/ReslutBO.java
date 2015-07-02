@@ -6,16 +6,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.maizuo.seat.service.offer.OfferService;
+import com.maizuo.seat.exception.ServiceException;
 
 @XmlRootElement(name = "Result")
 public class ReslutBO {
 
-	private int errorCode;
+	private int errorCode = 0;
 
-	private String errMsg;
+	private String errMsg = "";
 
-	private String result;
+	private String result = "success";
 
 	private List<CinemaOffer> list;
 
@@ -92,10 +92,10 @@ public class ReslutBO {
 		this.result = result;
 	}
 
-	public ReslutBO(OfferService offerService) {
-		this.errorCode = offerService.getErrorCode();
-		this.errMsg = offerService.getErrorMsg();
-		this.result = offerService.getResult() ? "success" : "fail";
+	public ReslutBO(ServiceException serviceException) {
+		this.errorCode = serviceException.getErrorCode();
+		this.errMsg = serviceException.getErrorMsg();
+		this.result = serviceException.isResult() ? "success" : "fail";
 	}
 
 	public ReslutBO() {

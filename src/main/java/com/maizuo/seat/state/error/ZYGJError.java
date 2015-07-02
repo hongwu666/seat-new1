@@ -49,4 +49,8 @@ public enum ZYGJError implements Error {
 
 	@Override
 	public abstract String getComment();
+
+	public String value() {
+		return this.toString();
+	}
 }

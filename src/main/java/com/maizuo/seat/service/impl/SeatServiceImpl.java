@@ -7,8 +7,11 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.maizuo.seat.dao.SeatDao;
+import com.maizuo.seat.entity.Seat;
 import com.maizuo.seat.factory.ServiceFactory;
 import com.maizuo.seat.helper.ForIdToOfferIdHelper;
 import com.maizuo.seat.service.SeatService;
@@ -16,6 +19,9 @@ import com.maizuo.seat.util.UrlRequestUtils;
 
 @Service
 public class SeatServiceImpl implements SeatService {
+
+	@Autowired
+	private SeatDao seatDao;
 
 	/**
 	 * 转发服务器
@@ -50,6 +56,11 @@ public class SeatServiceImpl implements SeatService {
 			}
 		}
 		return UrlRequestUtils.execute(url, paraMap, UrlRequestUtils.Mode.GET);
+	}
+
+	@Override
+	public Seat get(String offerCinemaId, String hallId, String sectionId, String rowId, String columnId) {
+		return seatDao.get(offerCinemaId, hallId, sectionId, rowId, columnId);
 	}
 
 }

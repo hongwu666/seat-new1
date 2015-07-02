@@ -12,7 +12,7 @@ public class ServiceFactory {
 		try {
 			msg = serverConfig.getConfig().getStringByFullName("/seatSplitFlow1/" + key);
 			if (msg == null) {
-				msg = Constant.DEFAULT_URL;
+				msg = "";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

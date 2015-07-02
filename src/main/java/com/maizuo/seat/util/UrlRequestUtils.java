@@ -15,9 +15,15 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
+import javax.xml.rpc.ParameterMode;
+
+import org.apache.axis.client.Call;
+import org.apache.axis.client.Service;
+import org.apache.axis.encoding.XMLType;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.lang.StringUtils;
@@ -216,12 +222,14 @@ public class UrlRequestUtils {
 		for (int count = 0; count < 3; count++) {
 			try {
 				URL url = new URL(urlStr);
+				long sta1 = System.currentTimeMillis();
 				Object[] data = new Object[map.size()];
 				int i = 0;
 				for (Object o : map.values()) {
 					data[i] = o;
 					i++;
 				}
+				long sta2 = System.currentTimeMillis();
 				httpConnection = (HttpURLConnection) url.openConnection();
 				httpConnection.setConnectTimeout(10000);
 				httpConnection.connect();
@@ -371,6 +379,30 @@ public class UrlRequestUtils {
 				connection.disconnect();
 		}
 		return reStr;
+
+	}
+
+	public static String b(String urlStr, String method, LinkedHashMap<String, Object> map) {
+
+		Service service = new Service();
+		String result = "";
+		try {
+			Call call = (Call) service.createCall();
+			call.setTargetEndpointAddress(urlStr);
+			call.setOperationName(new javax.xml.namespace.QName("http://webservice.main.cmts.cn", method));
+			Object[] values = new Object[map.size()];
+			int i = 0;
+			for (Entry<String, Object> e : map.entrySet()) {
+				call.addParameter(e.getKey(), XMLType.XSD_STRING, ParameterMode.IN);
+				values[i++] = e.getValue();
+			}
+			call.setReturnType(XMLType.XSD_STRING);
+			result = (String) call.invoke(values);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 
 	}
 }

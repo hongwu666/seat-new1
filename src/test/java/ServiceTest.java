@@ -10,11 +10,11 @@ import com.maizuo.seat.object.CinemaOffer;
 import com.maizuo.seat.object.SeatOffer;
 import com.maizuo.seat.service.offer.OfferConfig;
 import com.maizuo.seat.service.offer.OfferService;
-import com.maizuo.seat.service.offer.RequestObj;
 import com.maizuo.seat.service.offer.impl.FirePhenixServiceImpl;
 import com.maizuo.seat.service.offer.impl.SkyStarServiceImpl;
+import com.maizuo.seat.service.offer.request.RequestObj;
 
-public class ServiceTest extends BaseTest {
+public class ServiceTest extends BaseTest {/*
 	// private org.apache.log4j.Logger logger =
 	// org.apache.log4j.LogManager.getLogger(getClass());
 	@Autowired
@@ -61,4 +61,4 @@ public class ServiceTest extends BaseTest {
 		List<SeatOffer> list = impl.getSeats(bo);
 		System.out.println(list);
 	}
-}
+*/}

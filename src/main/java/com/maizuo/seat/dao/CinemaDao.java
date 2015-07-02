@@ -9,4 +9,6 @@ public interface CinemaDao {
 	public List<Cinema> getList(int offerId);
 
 	public Cinema get(int offerId, int mzCinemaId);
+	
+	public Cinema get(String cinemaId);
 }

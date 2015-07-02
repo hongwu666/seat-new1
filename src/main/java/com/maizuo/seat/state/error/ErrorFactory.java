@@ -1,21 +1,16 @@
 package com.maizuo.seat.state.error;
 
-import com.maizuo.seat.service.offer.OfferConfig;
-
 public class ErrorFactory {
 
-	public static Error getError(int offerId, int code) {
-		Error error = null;
-		String offerName = OfferConfig.ins().getOfferName(offerId);
-		switch (offerName) {
-		case "zygj":
-			error = ZYGJError.getErrorByCode(code);
-			break;
-
+	public static Error getError(String className, int code) {
+		switch (className) {
+		case "FirePhenixServiceImpl":
+			return FirePhenixError.getErrorByCode(code);
+		case "SkyStarServiceImpl":
+			return SkyStarError.getErrorByCode(code);
 		default:
-			break;
+			return SkyStarError.getErrorByCode(code);
 		}
-		return error;
 	}
 
 }

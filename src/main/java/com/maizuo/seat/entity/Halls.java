@@ -1,7 +1,7 @@
 package com.maizuo.seat.entity;
 
-public class Halls implements SystemMode {
-	private String id;
+public class Halls extends DefaultSystemRedisMode<Halls> {
+	private int id;
 	private String cinameId;
 	private int code;
 	private String name;
@@ -9,11 +9,11 @@ public class Halls implements SystemMode {
 	private int vipFlag;
 	private int seatNum;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -67,7 +67,7 @@ public class Halls implements SystemMode {
 
 	@Override
 	public String getListKey() {
-		return String.valueOf(cinameId);
+		return cinameId;
 	}
 
 	@Override

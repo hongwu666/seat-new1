@@ -9,14 +9,15 @@
 
 	<bean id="firePhenix"
 		class="com.maizuo.seat.service.offer.impl.FirePhenixServiceImpl"
-		init-method="init" scope="singleton"></bean>
+		init-method="init" scope="singleton">
+	</bean>
+
 	<bean id="skyStart" class="com.maizuo.seat.service.offer.impl.SkyStarServiceImpl"
-		init-method="init" scope="singleton"></bean>
-	<bean id="wanda" class="com.maizuo.seat.service.offer.impl.WandaServiceImpl"
-		init-method="init" scope="singleton"></bean>
-	<bean id="dingXin" class="com.maizuo.seat.service.offer.impl.DingXinServiceImpl"
-		init-method="init" scope="singleton"></bean>
-	<bean id="splier" class="com.maizuo.seat.service.offer.impl.SplierServiceImpl"
-		init-method="init" scope="singleton"></bean>
+		init-method="init" scope="singleton">
+	</bean>
+	<!-- <bean id="wanda" class="com.maizuo.seat.service.offer.impl.WandaServiceImpl" 
+		init-method="init" scope="singleton"></bean> <bean id="dingXin" class="com.maizuo.seat.service.offer.impl.DingXinServiceImpl" 
+		init-method="init" scope="singleton"></bean> <bean id="splier" class="com.maizuo.seat.service.offer.impl.SplierServiceImpl" 
+		init-method="init" scope="singleton"></bean> -->
 </beans>
   

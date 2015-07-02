@@ -3,7 +3,7 @@ package com.maizuo.seat.entity;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class DefaultSystemRedisMode<T extends DefaultSystemRedisMode<?>> implements SystemRedisMode {
+public abstract class DefaultSystemRedisMode<T> implements SystemRedisMode {
 
 	private Class<T> entityClass;
 

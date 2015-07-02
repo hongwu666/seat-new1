@@ -20,7 +20,7 @@ public class HallController extends BaseController {
 	 */
 	@RequestMapping(value = { "/halls" }, method = RequestMethod.GET)
 	public String halls() {
-
+		
 		return "view/index";
 	}
 

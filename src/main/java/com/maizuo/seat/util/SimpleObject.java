@@ -22,10 +22,19 @@ public class SimpleObject {
 		this.value = value;
 	}
 
+	public void setKV(String key, Object value) {
+		this.setKey(key);
+		this.setValue(value);
+	}
+
 	public SimpleObject(String key, Object value) {
 		super();
 		this.key = key;
 		this.value = value;
+	}
+
+	public SimpleObject() {
+		super();
 	}
 
 }

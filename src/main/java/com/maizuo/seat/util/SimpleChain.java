@@ -17,8 +17,8 @@ public class SimpleChain {
 	}
 
 	public Object get(String key) {
-		for(SimpleObject obj:list){
-			if (obj.getKey()==key) {
+		for (SimpleObject obj : list) {
+			if (obj.getKey().equals(key)) {
 				return obj.getValue();
 			}
 		}

@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 public class StringHelper {
 
@@ -26,8 +29,10 @@ public class StringHelper {
 		}
 		return str;
 	}
+
 	/**
 	 * 获取现在时间转换datefrom格式
+	 * 
 	 * @param dateformat
 	 * @return
 	 */
@@ -52,7 +57,31 @@ public class StringHelper {
 
 	}
 
+	/**
+	 * 把map参数列表拼成url字符串"&key=value..."
+	 * 
+	 * @param map
+	 * @return
+	 */
+	public static String mapToStrUrl(LinkedHashMap<String, Object> map) {
+		StringBuffer sb = new StringBuffer();
+		Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<String, Object> e = it.next();
+			sb.append("&").append(e.getKey()).append("=").append(e.getValue());
+		}
+		return sb.toString();
+	}
+
 	public static void main(String[] args) {
-		System.out.println(getCurTime("mm"));
+		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+		map.put("asd", 123);
+		map.put("asd3", 1223);
+		map.put("asd2", 12233);
+		System.out.println(mapToStrUrl(map));
+	}
+
+	public void add(String... str) {
+
 	}
 }

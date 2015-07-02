@@ -20,7 +20,6 @@ public class CinemaController extends BaseController {
 	@Autowired
 	private CinemaService cinemaService;
 
-
 	/**
 	 * 拉取影院及城市列表
 	 * 
@@ -29,12 +28,14 @@ public class CinemaController extends BaseController {
 	@RequestMapping(value = { "/cinemas" }, method = RequestMethod.GET)
 	@ResponseBody
 	public CinemaBO cinemas() {
+		
 		int thirdId = this.getInt("thirdId", 1);
 		String datetime = this.getString("datetime", "");
 		String sign = this.getString("sign", "");
 		CinemaBO coffee = cinemaService.getCinemas(thirdId, datetime, sign);
 		return coffee;
 	}
+
 	/**
 	 * 拉取具体影院信息
 	 * 

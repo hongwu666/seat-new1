@@ -2,16 +2,11 @@ package com.maizuo.seat.dao.cache;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.maizuo.seat.dao.BaseSystemCacheDao;
+import com.maizuo.seat.dao.BaseSystemRedisDao;
 import com.maizuo.seat.dao.CinemaDao;
-import com.maizuo.seat.dao.mysql.CinemaDaoMysql;
 import com.maizuo.seat.entity.Cinema;
 
-public class CinemaDaoCache extends BaseSystemCacheDao<Cinema> implements CinemaDao {
-	@Autowired
-	private CinemaDaoMysql cinemaDaoMysql;
+public class CinemaDaoCache extends BaseSystemRedisDao<Cinema> implements CinemaDao {
 
 	public List<Cinema> getList(int offerId) {
 		return super.getList(String.valueOf(offerId));
@@ -23,7 +18,11 @@ public class CinemaDaoCache extends BaseSystemCacheDao<Cinema> implements Cinema
 
 	@Override
 	public Cinema get(int offerId, int mzCinemaId) {
-
-		return cinemaDaoMysql.get(offerId, mzCinemaId);
+		for (Cinema cinema : getList()) {
+			if (cinema.getMzCinemaId() == mzCinemaId) {
+				return cinema;
+			}
+		}
+		return null;
 	}
 }

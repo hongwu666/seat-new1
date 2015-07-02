@@ -24,7 +24,7 @@ public class CinemaDaoRedis implements CinemaDao {
 	}
 
 	public void add(List<Cinema> list) {
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<String, String>();
 		for (Cinema cinema : list) {
 			map.put(String.valueOf(cinema.getId()), FastJsonUtils.toJson(cinema));
 		}
@@ -42,13 +42,16 @@ public class CinemaDaoRedis implements CinemaDao {
 
 	@Override
 	public List<Cinema> getList(int offerId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Cinema get(int offerId, int mzCinemaId) {
-		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cinema get(String cinemaId) {
 		return null;
 	}
 }

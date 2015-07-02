@@ -1,18 +1,24 @@
-package com.maizuo.seat.service.offer.impl;
+/*package com.maizuo.seat.service.offer.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import com.maizuo.seat.exception.ServiceException;
 import com.maizuo.seat.object.CinemaOffer;
 import com.maizuo.seat.object.FilmOffer;
 import com.maizuo.seat.object.SeatOffer;
 import com.maizuo.seat.object.ShowOffer;
+import com.maizuo.seat.service.RequestLockObj;
 import com.maizuo.seat.service.offer.OfferInfo;
 import com.maizuo.seat.service.offer.OfferService;
 import com.maizuo.seat.service.offer.RequestObj;
+import com.maizuo.seat.service.offer.RequestUnlockObj;
 import com.maizuo.seat.service.offer.RequestUsedSeatObj;
+import com.maizuo.seat.util.SimpleObject;
 import com.talkweb.pm.framework.FrameException;
 import com.talkweb.wanda.app.AppService;
 import com.talkweb.wanda.app.bean.Cinema;
@@ -29,6 +35,10 @@ public class WandaServiceImpl extends Common implements OfferService {
 	public List<CinemaOffer> getCinemas() {
 		List<CinemaOffer> cinemaList = new ArrayList<CinemaOffer>();
 		CinemaOffer c = new CinemaOffer();
+		StringBuffer hallIds = new StringBuffer();
+		StringBuffer hallNames = new StringBuffer();
+		StringBuffer seatCounts = new StringBuffer();
+		StringBuffer vipFlags = new StringBuffer();
 
 		try {
 			Map<String, City> map = appService.doQueryCitys();
@@ -50,28 +60,34 @@ public class WandaServiceImpl extends Common implements OfferService {
 					c.setStatus(wdc.getSellState());
 
 					Map<String, Hall> hmap = appService.doQueryHallByCinema(wdc.getCinemaId());
-					String hallIds = "", hallNames = "", seatCounts = "", vipFlags = "";
-					for (String hallId : hmap.keySet()) {
-						Hall hall = hmap.get(hallId);
-						hallIds += "-" + hall.getHallId();
-						hallNames += "-" + hall.getHallName();
-						seatCounts += "-" + hall.getCapaCity();
-						vipFlags += "-" + ((hall.getVipFlag() == null) ? 0 : hall.getVipFlag());
+					hallIds.setLength(0);
+					hallNames.setLength(0);
+					seatCounts.setLength(0);
+					vipFlags.setLength(0);
+					for (Iterator<Hall> it = hmap.values().iterator(); it.hasNext();) {
+						Hall hall = it.next();
+
+						hallIds.append(hall.getHallId());
+						hallNames.append(hall.getHallName());
+						seatCounts.append(hall.getCapaCity());
+						vipFlags.append(((hall.getVipFlag() == null) ? 0 : hall.getVipFlag()));
+
+						if (it.hasNext()) {
+							hallIds.append("-");
+							hallNames.append("-");
+							seatCounts.append("-");
+							vipFlags.append("-");
+						}
 					}
-					if (hallIds.length() > 0) {
-						c.setHalls(hallIds.substring(1));
-						c.setHallNames(hallNames.substring(1));
-						c.setSeatCounts(seatCounts.substring(1));
-						c.setVipFlags(vipFlags.substring(1));
-					}
-					result = true;
+					c.setHalls(hallIds.toString());
+					c.setHallNames(hallNames.toString());
+					c.setSeatCounts(seatCounts.toString());
+					c.setVipFlags(vipFlags.toString());
 					cinemaList.add(c);
 				}
 			}
 		} catch (FrameException e) {
-			e.printStackTrace();
-			errorMsg = e.getErrorMsg() + "(" + e.getErrorCode() + ")";
-			errorCode = -1;
+			throw new ServiceException(-1, e.getErrorMsg() + "(" + e.getErrorCode() + ")");
 		}
 		return cinemaList;
 	}
@@ -228,4 +244,15 @@ public class WandaServiceImpl extends Common implements OfferService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void unlockSeats(RequestUnlockObj obj) throws ServiceException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void lockSeat(RequestLockObj obj) throws ServiceException {
+	}
 }
+*/

@@ -8,7 +8,7 @@ public class ThirdCinameRelation implements SystemMode {
 
 	private int thirdId;
 
-	private int cinameId;
+	private String cinameId;
 
 	private Date createDate;
 
@@ -36,11 +36,11 @@ public class ThirdCinameRelation implements SystemMode {
 		this.createDate = createDate;
 	}
 
-	public int getCinameId() {
+	public String getCinameId() {
 		return cinameId;
 	}
 
-	public void setCinameId(int cinameId) {
+	public void setCinameId(String cinameId) {
 		this.cinameId = cinameId;
 	}
 

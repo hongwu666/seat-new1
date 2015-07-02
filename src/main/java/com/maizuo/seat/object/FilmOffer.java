@@ -179,14 +179,14 @@ public class FilmOffer {
 		super();
 	}
 
-	public FilmOffer(Element element) {
-		this.setFilmDuration(element.attributeValue("duration"));
-		this.setFilmDimesional(element.attributeValue("dimensional"));
-		this.setFilmType(element.attributeValue("imax"));
-		this.setFilmTitle(element.attributeValue("title"));
-		this.setFilmLanguage(element.attributeValue("language"));
-		this.setFilmName(element.attributeValue("name"));
-		this.setOfferFilmId(element.attributeValue("id"));
+	public FilmOffer(Element filmElement) {
+		this.setFilmDuration(filmElement.attributeValue("duration"));
+		this.setFilmDimesional(filmElement.attributeValue("dimensional"));
+		this.setFilmType(filmElement.attributeValue("imax"));
+		this.setFilmTitle(filmElement.attributeValue("title"));
+		this.setFilmLanguage(filmElement.attributeValue("language"));
+		this.setFilmName(filmElement.attributeValue("name"));
+		this.setOfferFilmId(filmElement.attributeValue("id"));
 		this.setFilmId(0);
 	}
 

@@ -423,14 +423,22 @@ public class ShowOffer {
 		super();
 	}
 
-	public ShowOffer(Element element) {
-		this.setFilmDimesional(element.attributeValue("dimensional"));
-		this.setFilmImax(Integer.parseInt(element.attributeValue("imax")));
-		this.setFilmDuration(Integer.parseInt(element.attributeValue("duration")));
-		this.setFilmTitle(element.attributeValue("title"));
-		this.setFilmLanguage(element.attributeValue("language"));
-		this.setFilmName(element.attributeValue("name"));
-		this.setOfferFilmId(element.attributeValue("id"));
+	public ShowOffer(Element filmEl,Element showEl) {
+		this.setFilmDimesional(filmEl.attributeValue("dimensional"));
+		this.setFilmImax(Integer.parseInt(filmEl.attributeValue("imax")));
+		this.setFilmDuration(Integer.parseInt(filmEl.attributeValue("duration")));
+		this.setFilmTitle(filmEl.attributeValue("title"));
+		this.setFilmLanguage(filmEl.attributeValue("language"));
+		this.setFilmName(filmEl.attributeValue("name"));
+		this.setOfferFilmId(filmEl.attributeValue("id"));
+		
+		this.setUpdateType(showEl.attributeValue("updateType"));
+		this.setUpdateLevel(showEl.attributeValue("updateLevel"));
+		this.setTime( showEl.attributeValue("time"));
+		this.setDate(showEl.attributeValue("date"));
+		this.setShowSeqNo(showEl.attributeValue("showSeqNo"));
+		this.setSeqNo(showEl.attributeValue("seqNo"));
+		this.setHallId( showEl.attributeValue("hallId"));
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.maizuo.seat.service.offer.impl;
+/*package com.maizuo.seat.service.offer.impl;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -13,23 +13,27 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.maizuo.seat.exception.ServiceException;
 import com.maizuo.seat.object.CinemaOffer;
 import com.maizuo.seat.object.FilmOffer;
 import com.maizuo.seat.object.SeatOffer;
 import com.maizuo.seat.object.ShowOffer;
+import com.maizuo.seat.service.RequestLockObj;
 import com.maizuo.seat.service.offer.OfferInfo;
 import com.maizuo.seat.service.offer.OfferService;
 import com.maizuo.seat.service.offer.RequestObj;
+import com.maizuo.seat.service.offer.RequestUnlockObj;
 import com.maizuo.seat.service.offer.RequestUsedSeatObj;
 import com.maizuo.seat.util.MD5;
+import com.maizuo.seat.util.SimpleObject;
 import com.maizuo.seat.util.UrlRequestUtils;
 
-/**
+*//**
  * 蜘蛛网
  * 
  * @author Administrator
  * 
- */
+ *//*
 public class SplierServiceImpl extends Common implements OfferService {
 	private Map<String, String> encryptParams = new LinkedHashMap<>();
 	private StringBuffer str = new StringBuffer();
@@ -206,4 +210,15 @@ public class SplierServiceImpl extends Common implements OfferService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void unlockSeats(RequestUnlockObj obj) throws ServiceException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void lockSeat(RequestLockObj obj) throws ServiceException {
+	}
 }
+*/

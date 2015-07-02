@@ -2,15 +2,15 @@ package com.maizuo.seat.dao.cache;
 
 import java.util.List;
 
-import com.maizuo.seat.dao.BaseSystemCacheDao;
+import com.maizuo.seat.dao.BaseSystemRedisDao;
 import com.maizuo.seat.dao.HallsDao;
 import com.maizuo.seat.entity.Halls;
 
-public class HallsDaoCache extends BaseSystemCacheDao<Halls> implements HallsDao {
+public class HallsDaoCache extends BaseSystemRedisDao<Halls> implements HallsDao {
 
 	@Override
-	public List<Halls> getList(int cinemaId) {
-		return super.getList(String.valueOf(cinemaId));
+	public List<Halls> getList(String cinemaId) {
+		return super.getList(cinemaId);
 	}
 
 	@Override

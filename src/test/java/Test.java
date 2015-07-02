@@ -8,7 +8,9 @@ import java.util.List;
 
 public class Test {
 	public static void main(String[] args) {
-		a();
+		System.out.println(Runtime.getRuntime().totalMemory()/1024/1024);
+		System.out.println(Runtime.getRuntime().maxMemory()/1024/1024);
+		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
 	}
 
 	public static void a() {
@@ -17,7 +19,7 @@ public class Test {
 		System.out.println(str);
 		// b(i, j);
 
-		List<Integer> list = new ArrayList<>();
+		List<Integer> list = new ArrayList<Integer>();
 		b(list);
 		// list.add(1);
 		System.out.println(list.size());

@@ -6,7 +6,7 @@ import com.maizuo.seat.entity.Halls;
 
 public interface HallsDao {
 
-	public List<Halls> getList(int cinemaId);
+	public List<Halls> getList(String cinemaId);
 
 	public Halls get(int hassId);
 }

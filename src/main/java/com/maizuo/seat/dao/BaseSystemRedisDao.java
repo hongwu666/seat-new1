@@ -23,6 +23,10 @@ public class BaseSystemRedisDao<T extends DefaultSystemRedisMode<?>> extends Bas
 
 	private Class<T> entityClass;
 
+	private List<T> listmode;
+	private Map<String, String> objmap;
+	private Map<String, List<Object>> objlistmap;
+	private Map<String, String> strlistomap;
 	private String obj;
 	private String list;
 
@@ -56,17 +60,17 @@ public class BaseSystemRedisDao<T extends DefaultSystemRedisMode<?>> extends Bas
 	}
 
 	public void initDate() {
-		List<T> listmode = getAll();
-		Map<String, String> objmap = new HashMap<String, String>();
-		Map<String, List<Object>> objlistmap = new HashMap<String, List<Object>>();
-		Map<String, String> strlistomap = new HashMap<String, String>();
+		listmode = getAll();
+		objmap = new HashMap<String, String>();
+		objlistmap = new HashMap<String, List<Object>>();
+		strlistomap = new HashMap<String, String>();
 		for (T model : listmode) {
 			String objKey = model.getObjKey();
 			String listKey = model.getListKey();
 			objmap.put(objKey, FastJsonUtils.toJson(model));
 			List<Object> oo = objlistmap.get(listKey);
 			if (oo == null) {
-				oo = new ArrayList<>();
+				oo = new ArrayList<Object>();
 				objlistmap.put(listKey, oo);
 			}
 			oo.add(model);

@@ -4,4 +4,5 @@ public interface Error {
 
 	public String getComment();
 
+	public String value();
 }

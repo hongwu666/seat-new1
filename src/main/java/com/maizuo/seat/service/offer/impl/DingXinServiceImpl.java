@@ -16,14 +16,20 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
+import com.maizuo.seat.entity.Order;
+import com.maizuo.seat.exception.ServiceException;
 import com.maizuo.seat.object.CinemaOffer;
 import com.maizuo.seat.object.FilmOffer;
 import com.maizuo.seat.object.SeatOffer;
 import com.maizuo.seat.object.ShowOffer;
+import com.maizuo.seat.service.RequestLockObj;
 import com.maizuo.seat.service.offer.OfferInfo;
 import com.maizuo.seat.service.offer.OfferService;
-import com.maizuo.seat.service.offer.RequestObj;
-import com.maizuo.seat.service.offer.RequestUsedSeatObj;
+import com.maizuo.seat.service.offer.request.RequestObj;
+import com.maizuo.seat.service.offer.request.RequestQueryOrderObj;
+import com.maizuo.seat.service.offer.request.RequestUnlockObj;
+import com.maizuo.seat.service.offer.request.RequestUsedSeatObj;
+import com.maizuo.seat.service.offer.request.RequestVerifyOrderObj;
 import com.maizuo.seat.util.DateUtils;
 import com.maizuo.seat.util.MD5;
 import com.maizuo.seat.util.UrlRequestUtils;
@@ -36,6 +42,7 @@ import com.maizuo.seat.util.UrlRequestUtils;
  */
 public class DingXinServiceImpl extends Common implements OfferService {
 
+	
 	private String getDingXinSign(String paramStr) {
 		String str = offerInfo.getAuthcode() + paramStr;
 		String str2 = MD5.getVal(str) + offerInfo.getAuthcode();
@@ -55,15 +62,15 @@ public class DingXinServiceImpl extends Common implements OfferService {
 				Element root = doc.getRootElement();
 				int status = Integer.parseInt(root.elementText("status"));
 				if (status == 0) {
-					this.errorCode = Integer.parseInt(root.elementTextTrim("errorCode"));
-					this.errorMsg = root.elementTextTrim("errorMessage");
+					int errorCode = Integer.parseInt(root.elementTextTrim("errorCode"));
+					String errorMsg = root.elementTextTrim("errorMessage");
 					return "ERROR";
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.errorCode = 1000;
-			this.errorMsg = map.get("CONTENT");
+			int errorCode = 1000;
+			String errorMsg = map.get("CONTENT");
 			return "ERROR";
 		}
 		return map.get("CONTENT");
@@ -156,7 +163,6 @@ public class DingXinServiceImpl extends Common implements OfferService {
 					}
 					cinemaList.add(cinema);
 				}
-				result = true;
 			}
 
 		} catch (DocumentException e) {
@@ -164,26 +170,6 @@ public class DingXinServiceImpl extends Common implements OfferService {
 		}
 
 		return cinemaList;
-
-	}
-
-	@Override
-	public boolean getResult() {
-		return result;
-	}
-
-	@Override
-	public int getErrorCode() {
-		return errorCode;
-	}
-
-	@Override
-	public String getErrorMsg() {
-		return errorMsg;
-	}
-
-	@Override
-	public void setIsShowLog(boolean isShowLog) {
 
 	}
 
@@ -246,7 +232,6 @@ public class DingXinServiceImpl extends Common implements OfferService {
 						}
 					}
 				}
-				result = true;
 			}
 
 		} catch (DocumentException e) {
@@ -316,7 +301,6 @@ public class DingXinServiceImpl extends Common implements OfferService {
 						showList.add(show);
 					}
 				}
-				result = true;
 			}
 
 		} catch (DocumentException e) {
@@ -338,6 +322,28 @@ public class DingXinServiceImpl extends Common implements OfferService {
 
 	@Override
 	public List<SeatOffer> getUsedSeats(RequestUsedSeatObj obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void unlockSeats(RequestUnlockObj obj) throws ServiceException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void lockSeat(RequestLockObj obj) throws ServiceException {
+	}
+
+	@Override
+	public Order queryOrder(RequestQueryOrderObj obj) throws ServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order verifyOrder(RequestVerifyOrderObj obj) throws ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}

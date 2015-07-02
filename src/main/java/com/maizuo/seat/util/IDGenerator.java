@@ -2,8 +2,7 @@ package com.maizuo.seat.util;
 
 import java.util.UUID;
 
-import org.apache.commons.lang.NumberUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 public class IDGenerator {
 
@@ -12,7 +11,7 @@ public class IDGenerator {
 	}
 
 	public static void main(String[] args) {
-		org.apache.commons.lang.math.NumberUtils.toInt("");
+		NumberUtils.toInt("");
 		System.out.println(getID().length());
 	}
 }
