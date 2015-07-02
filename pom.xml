@@ -100,12 +100,9 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-all</artifactId>
-			<version>1.9.1</version>
-		</dependency>
-		<!-- zookper配置系统 -->
+
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-all</artifactId> 
+			<version>1.9.1</version> </dependency> --><!-- zookper配置系统 -->
 		<dependency>
 			<groupId>com.hyx</groupId>
 			<artifactId>config</artifactId>
