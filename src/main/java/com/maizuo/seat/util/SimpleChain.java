@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SimpleChain {
 
-	private List<SimpleObject> list = new ArrayList<>();
+	private List<SimpleObject> list = new ArrayList<SimpleObject>();
 
 	public SimpleChain add(SimpleObject obj) {
 		list.add(obj);

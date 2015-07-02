@@ -123,7 +123,7 @@ public class FastJsonUtils {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Map convertBean(Object bean) throws IntrospectionException, IllegalAccessException, InvocationTargetException {
 		Class type = bean.getClass();
-		Map returnMap = new LinkedHashMap<>();
+		Map returnMap = new LinkedHashMap();
 		BeanInfo beanInfo = Introspector.getBeanInfo(type);
 
 		PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
