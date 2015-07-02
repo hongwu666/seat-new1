@@ -39,11 +39,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.maizuo.common</groupId>
-			<artifactId>jdbc</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		<!-- <dependency> <groupId>com.maizuo.common</groupId> <artifactId>jdbc</artifactId> 
+			<version>0.0.1-SNAPSHOT</version> </dependency> -->
 		<!-- 网页 -->
 		<dependency>
 			<groupId>org.sitemesh</groupId>
